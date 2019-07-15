@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request
 application = Flask(__name__)
 
-@application.route("/results")
+@application.route("/")
 def index():
 	return render_template('home.html')
 
-@application.route("/")
+@application.route("/results")
 def results():
 
 	#sample instance from business.json
@@ -19,7 +19,7 @@ def results():
 	categories = info["categories"]
 
 	restaurant_info_list = [{"name": name, "address": address, "categories" : categories}]
-	return render_template("results.html", Restaurants = restaurant_info_list)
+	return render_template("results.html", restaurants = restaurant_info_list)
 
 
 if __name__ == "__main__":
