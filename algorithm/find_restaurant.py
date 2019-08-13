@@ -1,6 +1,7 @@
 import numpy as np
 import h5py
 import json
+import os
 
 def subset_files(photo_json_path, business_json_path, restaurant_list_path):
     '''
@@ -49,7 +50,8 @@ def fetch_restaurant(image_id_lst, photo_business_json_path):
     return restaurants_dict
 
 if __name__ == "__main__":
-    image_json_path = "C:/Users/sanan/Desktop/yelp_project/yelp_dataset/yelp_dataset/photo.json"
-    restaurant_json_path = "C:/Users/sanan/Desktop/yelp_project/yelp_dataset/yelp_dataset/business.json"
-    restaurant_list_path = "C:/Users/sanan/Desktop/yelp_project/algorithm/encoded.h5"
+	base_dir = os.getcwd()
+	image_json_path = os.path.join(base_dir, 'yelp_dataset/yelp_dataset/photo.json')
+    restaurant_json_path = os.path.join(base_dir, "yelp_dataset/yelp_dataset/business.json")
+    restaurant_list_path = os.path.join(base_dir, "encoded.h5")
     subset_files(image_json_path, restaurant_json_path, restaurant_list_path)

@@ -47,7 +47,6 @@ def main():
     input_path = "C:/Users/sanan/Desktop/yelp_project/input_image/"
     data, files = encode(path, preprocess_input, model, input_size = 224, batch_size = 128)
     data_input, files_input = encode(input_path, preprocess_input, model, input_size = 224, batch_size = 1)
-    #print(files)
     data, data_input = np.reshape(data, (len(files), data.shape[1]*data.shape[2]*data.shape[3])), \
                 np.reshape(data_input, (len(files_input), data_input.shape[1]*data_input.shape[2]*data_input.shape[3]))
     print(data.shape, data_input.shape)
@@ -56,7 +55,6 @@ def main():
     with h5py.File('encoded.h5', 'w') as hf:
         hf.create_dataset("image_data_0",  data=data)
         hf.create_dataset("files_list_0", data = np.chararray.encode(np.array(files), encoding='utf8'))
-        #hf.create_dataset("files_list_0",  data=np.array(files))
     K.clear_session()
 
 if __name__ == "__main__":
