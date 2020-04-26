@@ -23,19 +23,19 @@ def index():
 @application.route("/", methods=['POST'])
 def upload_file():
 	if request.method == "POST":
-		#print(request.files)
+
 		if "file" not in request.files:
 			return redirect(request.url)
 		else:
 			file = request.files["file"]
-			#print(file.filename)
+		
 		if file.filename == "":
 			return "Please select a file."
-		#elif file and allowed_file(file.filename):
+
 		elif file.filename:
-			#print(type(file))
+	
 			file.filename = secure_filename("input_image.jpg")
-			#print(file, S3_BUCKET, file.filename)
+			
 			try:
 				S3.upload_fileobj(
 				file,
@@ -47,9 +47,9 @@ def upload_file():
 				}
 				)
 			except Exception as error:
-       		 # This is a catch all exception, edit this part to fit your needs.
 				print("Something Happened: ", error)
 				return error
+				
 			flash('File successfully uploaded')
 			return redirect("/results")
 	else:
@@ -63,9 +63,9 @@ def results():
 	#The relavant file paths
 	input_image_path = "temp/input_image.jpg"
 	model_path = "src/model.h5"
-	photo_business_path = "data/photo_business.json"
-	image_id_label_path = "data/image_id_to_label.json"
-	food101_label_mapping = "data/food101_label_map_inv.json"
+	photo_business_path = "src/photo_business.json"
+	image_id_label_path = "src/image_id_to_label.json"
+	food101_label_mapping = "src/food101_label_map_inv.json"
 
 	#run the algorithm
 	info_list = find_highest_score_rest(
