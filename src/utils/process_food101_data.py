@@ -93,7 +93,8 @@ def show_random_image(dataset_path, label_path):
             ix += 1
     # show the figure
     pyplot.show()
-def group_label(index_to_label_path, label_to_content_path):
+
+def group_food_label(index_to_label_path, label_to_content_path):
     '''
     Manually group labels together to reduce the number of classes.
     Save the mappings between labels and class numbers into json files.
@@ -142,7 +143,7 @@ def group_label(index_to_label_path, label_to_content_path):
     with open(label_to_content_path, "w") as label_to_content_json:
         json.dump(label_to_content, label_to_content_json)
 
-def group_food101_label(food101_data_path, index_to_label_path, label_to_content_path, food101_label_map):
+def assign_cuisine_label_to_image(food101_data_path, index_to_label_path, label_to_content_path, food101_label_map):
     '''
     Create new training labels based on the groupped label mapping.
     '''
@@ -179,6 +180,6 @@ if __name__ == "__main__":
     test_json_path = os.path.join(base_dir, "data/food-101/meta/test.json")
     label_json_path = os.path.join(base_dir, "food101_label_map.json")
     load_train_test_data(train_json_path, test_json_path, label_json_path, image_dir, 64)
+    group_food_label("food101_index_label_map.json", "food101_label_content.json")
+    assign_cuisine_label_to_image("test_food101.npz", "food101_index_label_map.json", "food101_label_content.json", "food101_label_map.json")
     show_random_image("groupped_train_food101.npz", "food101_index_label_map.json")
-    group_label("food101_index_label_map.json", "food101_label_content.json")
-    group_food101_label("test_food101.npz", "food101_index_label_map.json", "food101_label_content.json", "food101_label_map.json")
