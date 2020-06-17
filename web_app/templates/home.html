@@ -6,22 +6,33 @@
 {% endblock %}
 {% block content %}
 {{ super() }}
-<div id = "logo">
+<div id="logo">
   <img id = "logo_image" src="static/yelp_logo.png" alt="yelp_logo" id = "logo" class = "center">
 </div>
-<div class="input-group mb-3" id = "file_upload">
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile02">
-    <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
-  </div>
-  <div class="input-group-append">
-    <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
-  </div>
+<div id="file_upload_wrapper">
+<div id="file_upload">
+<form method="post" action="/" enctype="multipart/form-data" id = "file_upload">
+    <input type="file" name="file" autocomplete="off" required>
+    <input type="submit" value="Submit">
+</form>
 </div>
-<div id = "instruction" class = "below_logo">
+<div id="file_upload_notice">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+  {% endwith %}
+</div>
+</div>
+
+<div id="instruction" class="below_logo">
   <p>This is instruction.</p>
 </div>
-<p id = "image_ref">
+<p id="image_ref">
   Background picture: ‘Tis the season of rhubarb. And strawberry. And blood orange. Praise be. Amen.
 </p>
 {% endblock %}

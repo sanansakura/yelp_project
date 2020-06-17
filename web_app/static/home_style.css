@@ -6,7 +6,7 @@ body {
   background-color: #EEEEEE  ;
 }
 
-#file_upload {
+#file_upload_wrapper {
   margin: 0;
   position: absolute;
   top: 70%;
@@ -17,6 +17,13 @@ body {
   height: auto;
 }
 
+#file_upload {
+  position:relative;
+}
+
+#file_upload_notice {
+    position:relative;
+}
 .center {
   margin: 0;
   position: absolute;
