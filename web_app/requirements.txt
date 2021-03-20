@@ -31,7 +31,7 @@ html5lib==0.9999999
 httplib2==0.11.3
 idna==2.6
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 jmespath==0.9.4
 Keras==2.2.5
 Keras-Applications==1.0.8
